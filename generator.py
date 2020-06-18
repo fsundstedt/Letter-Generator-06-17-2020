@@ -25,7 +25,6 @@ intro = 'To Whom it May Concern,'
 def textLinesP1():
     maxLength = 27
     textContent = ['I am writing to express my interest in the ' + position + ' position at ' + companyName + '.']
-    print(len(textContent[0]))
     if (len(companyName) + len(position)) > maxLength:
         textContent = ['I am writing to express my interest in the ' + position + ' position at ', companyName + '.']
     return textContent
