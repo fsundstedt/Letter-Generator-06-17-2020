@@ -1,6 +1,7 @@
 from reportlab.pdfgen import canvas
 from reportlab.pdfbase import pdfmetrics
 from datetime import date
+from textBody import personalInfo, textP2, textP3, textP4
 
 font = 'Times-Roman'
 
@@ -10,30 +11,56 @@ print('Type position below:')
 position = input()
 
 today = date.today()
-dateString = today.strftime('%m-%d-%Y')
+fileDateString = today.strftime('%m-%d-%Y')
+letterDateString = today.strftime('%m/%d/%Y')
 
-fileName = dateString + ' ' + companyName + '.pdf'
-documentTitle = 'sample doc title'
-title = 'sample title'
-subTitle = 'sample subtitle'
+fileName = fileDateString + '-' + companyName + '.pdf'
 
 blankLine = ''
+
+myInfoLines = personalInfo
+
 intro = 'To Whom it May Concern,'
-textLines = ['sample text here to test',' test']
+
+def textLinesP1():
+    maxLength = 27
+    textContent = ['I am writing to express my interest in the ' + position + ' position at ' + companyName + '.']
+    print(len(textContent[0]))
+    if (len(companyName) + len(position)) > maxLength:
+        textContent = ['I am writing to express my interest in the ' + position + ' position at ', companyName + '.']
+    return textContent
+
+textLinesP2 = textP2
+
+textLinesP3 = textP3
+
+textLinesP4 = textP4
 
 pdf = canvas.Canvas(fileName)
 
-pdf.setTitle(documentTitle)
+text = pdf.beginText(40, 790)
+text.setFont(font, 12)
 
-pdf.drawString(300, 770, title)
-pdf.line(30, 710, 550, 710)
-
-text = pdf.beginText(40, 680)
-text.setFont(font, 18)
+for line in myInfoLines:
+    text.textLine(line)
+text.textLine(blankLine)
+text.textLine(blankLine)
+text.textLine(letterDateString)
+text.textLine(blankLine)
 text.textLine(intro)
 text.textLine(blankLine)
-for line in textLines:
+for line in textLinesP1():
     text.textLine(line)
+text.textLine(blankLine)
+for line in textLinesP2:
+    text.textLine(line)
+text.textLine(blankLine)
+for line in textLinesP3:
+    text.textLine(line)
+text.textLine(blankLine)
+for line in textLinesP4:
+    text.textLine(line)
+text.textLine(blankLine)
 
 pdf.drawText(text)
 
