@@ -30,6 +30,8 @@ def textLinesP1():
         textContent = ['I am writing to express my interest in the ' + position + ' position at ', companyName + '.']
     return textContent
 
+
+# text body imports from other file. Replace textP2, 3, and 4 with your own text body. 
 textLinesP2 = textP2
 
 textLinesP3 = textP3
