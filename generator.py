@@ -3,6 +3,11 @@ from reportlab.pdfbase import pdfmetrics
 from datetime import date
 from textBody import personalInfo, textP2, textP3, textP4
 
+import os
+import shutil
+
+save_location = 'C:/Users/Frank/Desktop/cover_letters/'
+
 font = 'Times-Roman'
 
 print('Type company name below:')
@@ -66,3 +71,7 @@ text.textLine(blankLine)
 pdf.drawText(text)
 
 pdf.save()
+
+os.rename(fileName, save_location + fileName)
+shutil.move(fileName, save_location + fileName)
+os.replace(fileName, save_location + fileName)
